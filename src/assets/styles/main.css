@@ -1,0 +1,89 @@
+body {
+	margin: 0;
+	background-color: white;
+	background-image: url('../img/bg-img.png');
+	color: black;
+}
+
+button {
+	display: inline-block;
+	margin: 2px 0;
+	margin: auto auto;
+	border-radius: 10%;
+	padding: 5px;
+	background-color: #4CAF50;
+	font-size: large;
+}
+
+button[disabled] {
+	box-shadow: 0.25rem .25rem rgba(0,0,0,.075)!important;
+	cursor: not-allowed;
+}
+
+.delete {
+	cursor: pointer;
+}
+
+input {
+	display: inline-block;
+	margin: auto auto;
+	box-shadow: 0.25rem .25rem rgba(0,0,0,.075)!important;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: large;
+}
+
+.wrapper {
+	padding: 50px;
+	text-align: center;
+}
+
+.form {
+	margin: auto auto;
+}
+
+.item {
+	display: block;
+	margin: 20px auto;
+	box-shadow: 0.25rem .25rem rgba(0,0,0,.075)!important;
+	border-radius: 5px;
+	width: 15%;
+	padding: 10px;
+	background-color: #7a2a2aa8;
+	font-size: large;
+	text-align: left;
+}
+
+/* Credits: https://www.javatpoint.com/css-navigation-bar */
+ul {
+	top: 0;
+	margin: 0;
+	width: 100%;
+	padding: 0;
+	background-color: #666;
+	font-size: large;
+	list-style-type: none;
+	overflow: hidden;
+	position: fixed;
+}
+
+li {
+	border-right: 1px solid #bbb;
+	float: left;
+}
+
+li a {
+	display: block;
+	padding: 14px 16px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+.active {
+	background-color: #4CAF50;
+}
