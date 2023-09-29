@@ -12,9 +12,9 @@ export default createStore({
     getters: {
     },
     mutations: {
-        activeTab(id) {
+        activeTab(state, identifier) {
 		    const tabs = document.getElementsByTagName('li')
-		    const activeTab = document.getElementById(id)
+		    const activeTab = document.getElementById(identifier)
 
             for (let tab of tabs)
                 tab.classList.remove('active')
@@ -26,7 +26,7 @@ export default createStore({
             state.items = data
         },
 
-        postData(itemId = 4, itemName = "Date", itemIsDeleted = false) {
+        postData(state, itemId = 4, itemName = "Date", itemIsDeleted = false) {
             axios({
                 method: 'post',
                 url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/additems',
@@ -35,7 +35,7 @@ export default createStore({
             .then(response => console.log(response.data))
         },
 
-        putData(itemId, itemIsDeleted) {
+        putData(state, itemId, itemIsDeleted) {
             axios({
                 method: 'put',
                 url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/deleteitems',
@@ -59,17 +59,17 @@ export default createStore({
 					text: state.input,
 					deleted: false
 				})
-				commit('postData', state.items.length, state.input, false)
+				this.commit('postData', state.items.length, state.input, false)
 				state.input = ''
-				commit('isInput')
-				commit('calculateAmount')
+				this.commit('isInput')
+				this.commit('calculateAmount')
 			}
 		},
 
-		deleteItem(item) {
+		deleteItem(state, item) {
 			item.isDeleted = true
-			commit('putData', item.id, item.isDeleted)
-			commit('calculateAmount')
+			this.commit('putData', item.id, item.isDeleted)
+			this.commit('calculateAmount')
 		},
 
 		isInput(state) {
@@ -89,8 +89,8 @@ export default createStore({
 				else
 					inactiveItems++
 			}
-			commit('itemAmount', activeItems)
-			commit('deletedAmount', inactiveItems)
+			this.commit('updateItemAmount', activeItems)
+			this.commit('updateDeletedAmount', inactiveItems)
 		}
     },
     actions: {
@@ -99,7 +99,7 @@ export default createStore({
             .then(response => {
                 const data = JSON.parse(JSON.stringify(response.data))
                 console.log(data)
-                commit('getData', data)
+                this.commit('getData', data)
             })
         }
     },
