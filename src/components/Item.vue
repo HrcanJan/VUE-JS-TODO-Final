@@ -1,10 +1,10 @@
 <template>
-    <div class="item" v-if="!item.isDeleted && !$store.state.itemDeleted">
+    <div class="item" v-if="!item.isDeleted && !$store.state.isDeleted">
         <span @click="$store.commit('deleteItem', item)" style="margin-right: 15px" class="delete">X</span>
-        <span>{{  item.text }}</span>
+        <span>{{  item.name }}</span>
     </div>
-    <div class="item" v-if="item.deleted && $store.state.itemDeleted">
-        <span>{{  item.text }}</span>
+    <div class="item" v-if="item.isDeleted && $store.state.isDeleted">
+        <span>{{  item.name }}</span>
     </div>
 </template>
 
@@ -13,7 +13,6 @@ export default {
     name: 'Item',
     props: {
         item: Object,
-    }
-    
+    },
 }
 </script>

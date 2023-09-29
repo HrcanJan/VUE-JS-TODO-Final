@@ -20,10 +20,25 @@ export default createStore({
                 tab.classList.remove('active')
 
             activeTab.classList.add('active')
+
+            if(identifier === 'list')
+                state.isDeleted = false
+            else
+                state.isDeleted = true
 	    },
 
         getData(state, data) {
-            state.items = data
+            data = data.map(obj => {
+                const x = obj.isDeleted
+                if(x === "true" || x === "True")
+                    obj.isDeleted = true
+                else
+                    obj.isDeleted = false
+                return obj
+            })
+            for(let i = 0; i < data.length; i++)
+                state.items.push(data[i])
+            this.commit('calculateAmount')
         },
 
         postData(state, itemId = 4, itemName = "Date", itemIsDeleted = false) {
@@ -56,8 +71,8 @@ export default createStore({
 			if(state.input) {
 				state.items.push({
 					id: state.items.length + 1,
-					text: state.input,
-					deleted: false
+					name: state.input,
+					isDeleted: false
 				})
 				this.commit('postData', state.items.length, state.input, false)
 				state.input = ''
@@ -97,7 +112,7 @@ export default createStore({
         getData() {
             axios.get('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/items')
             .then(response => {
-                const data = JSON.parse(JSON.stringify(response.data))
+                const data = response.data
                 console.log(data)
                 this.commit('getData', data)
             })
