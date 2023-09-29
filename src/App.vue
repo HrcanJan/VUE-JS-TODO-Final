@@ -22,7 +22,7 @@
 export default {
     async mounted() {
         try{
-            this.$store.commit('getData')
+            this.$store.dispatch('getData')
         } catch (error) {
             console.error("Error fetching data:", error);
             }

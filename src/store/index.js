@@ -48,9 +48,50 @@ export default createStore({
             state.activeItemsCount = amount
         },
 
-        updateDeletedAmount(amount = 0){
+        updateDeletedAmount(state, amount = 0){
             state.deletedItemsCount = amount
-        }
+        },
+
+        addItem(state) {
+			if(state.input) {
+				state.items.push({
+					id: state.items.length + 1,
+					text: state.input,
+					deleted: false
+				})
+				commit('postData', state.items.length, state.input, false)
+				state.input = ''
+				commit('isInput')
+				commit('calculateAmount')
+			}
+		},
+
+		deleteItem(item) {
+			item.isDeleted = true
+			commit('putData', item.id, item.isDeleted)
+			commit('calculateAmount')
+		},
+
+		isInput(state) {
+			const button =  document.querySelector('button');
+			if(state.input)
+				button.disabled = false
+			else
+				button.disabled = true
+		},
+
+		calculateAmount(state) {
+			let activeItems = 0
+			let inactiveItems = 0
+			for(let i = 0; i < state.items.length; i++){
+				if(!state.items[i].isDeleted)
+					activeItems++
+				else
+					inactiveItems++
+			}
+			commit('itemAmount', activeItems)
+			commit('deletedAmount', inactiveItems)
+		}
     },
     actions: {
         getData() {
