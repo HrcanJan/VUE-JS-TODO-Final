@@ -1,14 +1,6 @@
 <template>
 	<h2>Nová položka</h2>
-	<div class="form">
-		<input 
-			@keyup.enter="$store.commit('addItem')" 
-			@input="$store.commit('isInput')" 
-			v-model="$store.state.input" 
-			placeholder="Názov položky"
-		>
-		<button @click="$store.commit('addItem')" disabled>+</button>
-	</div>
+	<Form />
 	<hr>
 	<h2>Pridané položky</h2>
 	<div v-for="item in $store.state.items" :key="`item-${item.id}`">
@@ -18,10 +10,11 @@
 
 <script>
 import Item from '../components/Item.vue'
+import Form from '../components/Form.vue'
 
 export default {
 	components: {
-		Item, 
+		Item, Form
 	},
 }
 </script>
