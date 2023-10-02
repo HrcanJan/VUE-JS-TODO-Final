@@ -2,8 +2,11 @@ body {
 	margin: 0;
 	background-color: white;
 	background-image: url('../img/bg-img.png');
+	background-size: cover;
+	background-attachment: fixed;
 	color: black;
-}
+  }
+  
 
 button {
 	display: inline-block;
