@@ -90,6 +90,11 @@ input {
 	background-color: orange;
 }
 
+.itemButton:hover, #editButton:hover, #deleteButton:hover, #saveButton:hover, #cancelButton:hover {
+	transition: 400ms;
+	background-color: white;
+}
+
 .svgs {
 	display: flex; 
 	align-items: center;
