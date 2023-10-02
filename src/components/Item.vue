@@ -19,7 +19,7 @@
                 @input="isInput"
                 v-model="input"
             />
-            <button @click="saveItem">Save</button>
+            <button @click="saveItem" :disabled="isDisabled">Save</button>
             <button @click="editDoneItem">Cancel</button>
         </div>
         <span :class="this.itemNameDiv">{{  item.name }}</span>
@@ -42,7 +42,8 @@ export default {
 		return {
 			inputDiv: "inactiveDiv",
             itemNameDiv: "",
-            input: this.item.name
+            input: this.item.name,
+            isDisabled: false
 		}
 	},
 
@@ -52,11 +53,10 @@ export default {
 
     methods: {
 		isInput() {
-			const button =  document.querySelector('button');
 			if(this.input)
-				button.disabled = false
+				this.isDisabled = false
 			else
-				button.disabled = true
+				this.isDisabled = true
 		},
 
         editItem(){
@@ -65,6 +65,7 @@ export default {
         },
 
         editDoneItem(){
+            this.isDisabled = false
             this.inputDiv = "inactiveDiv"
             this.itemNameDiv = ""
             this.input = this.item.name
