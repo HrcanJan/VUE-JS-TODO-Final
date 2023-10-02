@@ -24,6 +24,10 @@ button[disabled] {
 	cursor: pointer;
 }
 
+.inactiveDiv {
+	display: none;
+}
+
 input {
 	display: inline-block;
 	margin: auto auto;
