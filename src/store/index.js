@@ -36,8 +36,11 @@ export default createStore({
                     obj.isDeleted = false
                 return obj
             })
+            
+            const itemNames = state.items.map(obj => obj.name);
             for(let i = 0; i < data.length; i++)
-                state.items.push(data[i])
+                if(itemNames.indexOf(data[i].name) === -1)
+                    state.items.push(data[i])
             this.commit('calculateAmount')
         },
 
