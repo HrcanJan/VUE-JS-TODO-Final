@@ -50,11 +50,11 @@ export default createStore({
             .then(response => console.log(response.data))
         },
 
-        putData(state, itemId, itemIsDeleted) {
+        putData(state, item) {
             axios({
                 method: 'put',
                 url: 'https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/deleteitems',
-                data: {"id": itemId, "isDeleted": itemIsDeleted}
+                data: {"id": item.id, "isDeleted": item.isDeleted}
                 })
             .then((response) => console.log(response.data))
         },
@@ -83,13 +83,13 @@ export default createStore({
 
 		deleteItem(state, item) {
 			item.isDeleted = true
-			this.commit('putData', item.id, item.isDeleted)
+			this.commit('putData', item)
 			this.commit('calculateAmount')
 		},
 
         undeleteItem(state, item) {
 			item.isDeleted = false
-			this.commit('putData', item.id, item.isDeleted)
+			this.commit('putData', item)
 			this.commit('calculateAmount')
 		},
 

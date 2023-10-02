@@ -13,7 +13,12 @@
             </svg>
         </span>
         <div :class="this.inputDiv">
-            <input name="input" :value="this.item.name" />
+            <input 
+                name="input" 
+                @keyup.enter="saveItem" 
+                @input="isInput"
+                v-model="input"
+            />
             <button>Save</button>
             <button @click="editDoneItem">Cancel</button>
         </div>
@@ -37,6 +42,7 @@ export default {
 		return {
 			inputDiv: "inactiveDiv",
             itemNameDiv: "",
+            input: ""
 		}
 	},
 
@@ -45,6 +51,14 @@ export default {
     },
 
     methods: {
+		isInput() {
+			const button =  document.querySelector('button');
+			if(this.input)
+				button.disabled = false
+			else
+				button.disabled = true
+		},
+
         editItem(){
             this.inputDiv = ""
             this.itemNameDiv = "inactiveDiv"
@@ -53,7 +67,15 @@ export default {
         editDoneItem(){
             this.inputDiv = "inactiveDiv"
             this.itemNameDiv = ""
-        }
+        },
+
+        saveItem() {
+			if(this.input) {
+				this.item.name = this.input
+				this.$store.commit('putData', this.item)
+                this.editDoneItem()
+			}
+		},
     }
 }
 </script>
