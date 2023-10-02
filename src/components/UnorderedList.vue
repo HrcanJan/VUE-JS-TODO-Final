@@ -6,10 +6,10 @@
         <li id="deleted" @click="$store.commit('activeTab', 'deleted')">
             <router-link to="/deleted">Deleted ({{ $store.state.deletedItemsCount }})</router-link>
         </li>
-        <li id="deleted" @click="$store.dispatch('getData')">
+        <li @click="$store.dispatch('getData')">
             <a>GET</a>
         </li>
-        <li id="deleted" @click="$store.commit('postData')">
+        <li @click="$store.commit('postData')">
             <a>POST</a>
         </li>
     </ul>

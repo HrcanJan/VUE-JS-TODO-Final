@@ -34,7 +34,7 @@ button[disabled] {
 input {
 	display: inline-block;
 	margin: auto auto;
-	box-shadow: 0.25rem .25rem rgba(0,0,0,.075)!important;
+	box-shadow: 0.25rem .25rem rgba(0, 0, 0, .075)!important;
 	border-radius: 5px;
 	padding: 5px;
 	font-size: large;
@@ -52,7 +52,7 @@ input {
 .item {
 	display: block;
 	margin: 20px auto;
-	box-shadow: 0.25rem .25rem rgba(0,0,0,.075)!important;
+	box-shadow: 0.25rem .25rem rgba(0, 0, 0, .075)!important;
 	border-radius: 5px;
 	width: 15%;
 	padding: 10px;
@@ -85,6 +85,7 @@ li a {
 	text-align: center;
 	color: white;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 li a:hover {
