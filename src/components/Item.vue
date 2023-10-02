@@ -1,21 +1,23 @@
 <template>
     <div class="item" v-if="!item.isDeleted && !$store.state.isDeleted">
         <div class="topItem">
-            <div :class="this.inputDiv">
+            <div v-if="this.isInputDiv">
                 <input 
                     name="input" 
                     @keyup.enter="saveItem" 
                     @input="isInput"
                     v-model="input"
                 />
-                <button @click="saveItem" :disabled="isDisabled">Save</button>
-                <button @click="editDoneItem">Cancel</button>
+                <div class="row">
+                    <button class="itemButton" @click="saveItem" :disabled="isDisabled">Save</button>
+                    <button class="itemButton" @click="editDoneItem">Cancel</button>
+                </div>
             </div>
 
-            <span :class="this.itemNameDiv">{{  item.name }}</span>
+            <span v-if="!isInputDiv">{{  item.name }}</span>
         </div>
 
-        <div :class="this.itemNameDiv">
+        <div v-if="!isInputDiv">
             <div class="row">
                 <button class="itemButton" id="deleteButton">
                     <span @click="$store.commit('deleteItem', item)" style="margin-right: 15px">
@@ -61,10 +63,9 @@ export default {
 
     data() {
 		return {
-			inputDiv: "inactiveDiv",
-            itemNameDiv: "",
             input: this.item.name,
-            isDisabled: false
+            isDisabled: false,
+            isInputDiv: false
 		}
 	},
 
@@ -81,14 +82,12 @@ export default {
 		},
 
         editItem(){
-            this.inputDiv = ""
-            this.itemNameDiv = "inactiveDiv"
+            this.isInputDiv = true
         },
 
         editDoneItem(){
             this.isDisabled = false
-            this.inputDiv = "inactiveDiv"
-            this.itemNameDiv = ""
+            this.isInputDiv = false
             this.input = this.item.name
         },
 
