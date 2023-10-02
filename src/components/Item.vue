@@ -19,7 +19,7 @@
                 @input="isInput"
                 v-model="input"
             />
-            <button>Save</button>
+            <button @click="saveItem">Save</button>
             <button @click="editDoneItem">Cancel</button>
         </div>
         <span :class="this.itemNameDiv">{{  item.name }}</span>
@@ -67,6 +67,7 @@ export default {
         editDoneItem(){
             this.inputDiv = "inactiveDiv"
             this.itemNameDiv = ""
+            this.input = this.item.name
         },
 
         saveItem() {
