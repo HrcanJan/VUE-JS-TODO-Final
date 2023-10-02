@@ -87,6 +87,12 @@ export default createStore({
 			this.commit('calculateAmount')
 		},
 
+        undeleteItem(state, item) {
+			item.isDeleted = false
+			this.commit('putData', item.id, item.isDeleted)
+			this.commit('calculateAmount')
+		},
+
 		isInput(state) {
 			const button =  document.querySelector('button');
 			if(state.input)
