@@ -15,7 +15,7 @@
         <div :class="this.inputDiv">
             <input name="input" :value="this.item.name" />
             <button>Save</button>
-            <button>Cancel</button>
+            <button @click="editDoneItem">Cancel</button>
         </div>
         <span :class="this.itemNameDiv">{{  item.name }}</span>
     </div>
@@ -48,6 +48,11 @@ export default {
         editItem(){
             this.inputDiv = ""
             this.itemNameDiv = "inactiveDiv"
+        },
+
+        editDoneItem(){
+            this.inputDiv = "inactiveDiv"
+            this.itemNameDiv = ""
         }
     }
 }
