@@ -45,6 +45,10 @@ input {
 	margin: auto auto;
 }
 
+.editInput {
+	width: 95%;
+}
+
 .item {
 	display: block;
 	margin: 20px auto;
