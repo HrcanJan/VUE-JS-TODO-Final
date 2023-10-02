@@ -42,7 +42,7 @@ export default {
 		return {
 			inputDiv: "inactiveDiv",
             itemNameDiv: "",
-            input: ""
+            input: this.item.name
 		}
 	},
 
