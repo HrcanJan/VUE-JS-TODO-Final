@@ -2,19 +2,29 @@
     <unordered-list />
     <div class="wrapper">
         <router-view />
+        <h1 v-if="!isMounted">Fetching data...</h1>
     </div>
+    
 </template>
 
 <script>
 import UnorderedList from './components/UnorderedList.vue'
 
 export default {
+    data() {
+		return {
+            isMounted: false
+		}
+	},
+
     async mounted() {
-        try{
-            this.$store.dispatch('getData')
+        try {
+            await this.$store.dispatch('getData')
+            this.isMounted = true
         } catch (error) {
             console.error("Error fetching data:", error);
-            }
+            throw error;
+        }
     },
 
     components: {

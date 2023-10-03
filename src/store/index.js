@@ -118,15 +118,20 @@ export default createStore({
 		}
     },
     actions: {
-        getData() {
-            axios.get('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/items')
-            .then(response => {
-                const data = response.data
-                console.log(data)
-                this.commit('getData', data)
-            })
+        async getData({ commit }) {
+            try {
+                const response = await axios.get('https://28ad3fcf-e1e0-48be-b014-13f6120e1bc0.mock.pstmn.io/items');
+                const data = response.data;
+                console.log(data);
+                commit('getData', data);
+                return data;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                throw error;
+            }
         }
     },
+    
     modules: {
     }
 })
