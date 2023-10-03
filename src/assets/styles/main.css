@@ -64,6 +64,8 @@ input {
 .topItem {
 	margin: 15px;
 	font-size: 23px;
+	white-space: normal;
+    word-wrap: break-word;
 }
 
 .row {
