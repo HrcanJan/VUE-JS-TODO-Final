@@ -1,16 +1,18 @@
 <template>
     <div class="form">
-		<Input />
+		<input 
+            @keyup.enter="$store.commit('addItem')" 
+            @input="$store.commit('isInput')" 
+            v-model="$store.state.input" 
+            placeholder="Názov položky"
+            name="input1"
+        >
 		<button @click="$store.commit('addItem')" disabled>+</button>
 	</div>
 </template>
 
 <script>
-import Input from './Input.vue'
-
 export default {
-    components: {
-        Input
-    }
+
 }
 </script>
