@@ -138,6 +138,6 @@ li a:hover {
 	background-color: #111;
 }
 
-.active {
+.router-link-active {
 	background-color: #4CAF50;
 }

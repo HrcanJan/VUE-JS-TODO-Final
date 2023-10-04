@@ -13,14 +13,6 @@ export default createStore({
     },
     mutations: {
         activeTab(state, identifier) {
-		    const tabs = document.getElementsByTagName('li')
-		    const activeTab = document.getElementById(identifier)
-
-            for (let tab of tabs)
-                tab.classList.remove('active')
-
-            activeTab.classList.add('active')
-
             if(identifier === 'list')
                 state.isDeleted = false
             else

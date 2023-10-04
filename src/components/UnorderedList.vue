@@ -1,9 +1,9 @@
 <template>
     <ul>
-        <li class="active" id="list" @click="$store.commit('activeTab', 'list')">
+        <li @click="$store.commit('activeTab', 'list')">
             <router-link to="/">List ({{ $store.state.activeItemsCount }})</router-link>
         </li>
-        <li id="deleted" @click="$store.commit('activeTab', 'deleted')">
+        <li @click="$store.commit('activeTab', 'deleted')">
             <router-link to="/deleted">Deleted ({{ $store.state.deletedItemsCount }})</router-link>
         </li>
         <li @click="$store.dispatch('getData')">
