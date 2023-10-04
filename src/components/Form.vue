@@ -21,8 +21,8 @@ export default {
 	},
 
     methods: {
-        addItem(){
-            if(this.input){
+        addItem() {
+            if(this.input) {
                 this.$store.commit('addItem', this.input)
                 this.input = ''
             }

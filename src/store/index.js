@@ -71,6 +71,7 @@ export default createStore({
 			this.commit('putData', item)
 		},
     },
+    
     actions: {
         async getData({ commit }) {
             try {
