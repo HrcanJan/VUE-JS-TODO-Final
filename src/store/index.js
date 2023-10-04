@@ -4,11 +4,12 @@ import axios from 'axios'
 export default createStore({
     state: {
         items : [],
-        input : '',
         isDeleted : false
     },
+
     getters: {
     },
+
     mutations: {
         activeTab(state, identifier) {
             if(identifier === 'list')
@@ -51,17 +52,13 @@ export default createStore({
             .then((response) => console.log(response.data))
         },
 
-        addItem(state) {
-			if(state.input) {
-				state.items.push({
-					id: state.items.length + 1,
-					name: state.input,
-					isDeleted: false
-				})
-				this.commit('postData', state.items.length, state.input, false)
-				state.input = ''
-				this.commit('isInput')
-			}
+        addItem(state, input) {
+            state.items.push({
+                id: state.items.length + 1,
+                name: input,
+                isDeleted: false
+            })
+            this.commit('postData', state.items.length, input, false)
 		},
 
 		deleteItem(state, item) {
@@ -73,14 +70,6 @@ export default createStore({
 			item.isDeleted = false
 			this.commit('putData', item)
 		},
-
-		isInput(state) {
-			const button =  document.querySelector('button');
-			if(state.input)
-				button.disabled = false
-			else
-				button.disabled = true
-		}
     },
     actions: {
         async getData({ commit }) {

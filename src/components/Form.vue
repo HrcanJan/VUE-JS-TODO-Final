@@ -1,18 +1,39 @@
 <template>
     <div class="form">
 		<input 
-            @keyup.enter="$store.commit('addItem')" 
-            @input="$store.commit('isInput')" 
-            v-model="$store.state.input" 
+            @keyup.enter="addItem" 
+            @input="isInput" 
+            v-model="input" 
             placeholder="Názov položky"
             name="input1"
         >
-		<button @click="$store.commit('addItem')" disabled>+</button>
+		<button @click="addItem" :disabled="isDisabled">+</button>
 	</div>
 </template>
 
 <script>
 export default {
+    data() {
+		return {
+            input: '',
+            isDisabled: true
+		}
+	},
 
+    methods: {
+        addItem(){
+            if(this.input){
+                this.$store.commit('addItem', this.input)
+                this.input = ''
+            }
+        },
+
+        isInput() {
+            if(this.input)
+                this.isDisabled = false
+            else
+                this.isDisabled = true
+        }
+    }
 }
 </script>
