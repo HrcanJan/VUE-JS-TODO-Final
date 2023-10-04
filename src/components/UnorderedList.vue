@@ -17,25 +17,24 @@
 
 <script>
 export default{
+    data() {
+		return {
+            data: this.$store.state.items
+		}
+	},
+
     computed: {
         activeItemsCount(){
-            const data = this.$store.state.items
             let activeItems = 0
 
-            for(let i = 0; i < data.length; i++)
-				if(!data[i].isDeleted)
+            for(let i = 0; i < this.data.length; i++)
+				if(!this.data[i].isDeleted)
 					activeItems++
 			return activeItems
         },
 
         deletedItemsCount(){
-            const data = this.$store.state.items
-            let deletedItems = 0
-
-            for(let i = 0; i < data.length; i++)
-				if(data[i].isDeleted)
-					deletedItems++
-			return deletedItems
+            return this.data.length - this.activeItemsCount
 
         }
     }
